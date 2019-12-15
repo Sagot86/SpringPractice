@@ -1,1 +1,8 @@
-/.idea/
+.idea
+*.iml
+*.ipr
+*.iws
+target/
+*.log
+/.project
+/plugin
