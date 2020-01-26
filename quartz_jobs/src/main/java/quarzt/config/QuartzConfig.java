@@ -17,7 +17,6 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 import quarzt.jobs.SimpleTestPrintingJob;
 
-import javax.sql.DataSource;
 import java.util.GregorianCalendar;
 import java.util.Properties;
 
@@ -30,7 +29,6 @@ public class QuartzConfig {
     private String simpleTestJobCron;
 
     private final ApplicationContext applicationContext;
-    private final DataSource dataSource;
 
     @Bean
     public SchedulerFactoryBean quartzScheduler(Trigger[] triggers, JobDetail[] jobs) {
@@ -39,7 +37,6 @@ public class QuartzConfig {
         quartzScheduler.setJobFactory(springBeanJobFactory());
         quartzScheduler.setTriggers(triggers);
         quartzScheduler.setJobDetails(jobs);
-        quartzScheduler.setDataSource(dataSource);
         return quartzScheduler;
     }
 
@@ -82,6 +79,7 @@ public class QuartzConfig {
         Properties properties = new Properties();
         properties.setProperty("org.quartz.scheduler.instanceName", "MyInstanceName");
         properties.setProperty("org.quartz.scheduler.instanceId", "Instance1");
+        properties.setProperty("org.quartz.jobStore.class", "org.quartz.simpl.RAMJobStore");
         return properties;
     }
 }
