@@ -1,0 +1,15 @@
+spring:
+  quartz:
+    job-store-type: memory
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ib?currentSchema=practice
+    username: practice_ms
+    password: practice_ms
+
+
+app:
+ jobs:
+  scheduler:
+    cron:
+      simpleTestJob: 30/15 * * * * ?
