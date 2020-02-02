@@ -19,6 +19,11 @@ public class SimpleTestPrintingJob implements Job {
 
     private PrintingService printingService;
 
+    @Autowired
+    public void setPrintingService(PrintingService printingService) {
+        this.printingService = printingService;
+    }
+
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         printingService.printCount("Count at jobStart = ", "");
