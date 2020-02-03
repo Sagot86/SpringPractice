@@ -3,13 +3,20 @@ package transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Manages.
+ *
+ * @author Igor_Orlov
+ */
 @Component
 @RequiredArgsConstructor
-public class PaymentComponent {
+public class Manages {
 
     private final ServiceWithTransactions serviceWithTransactions;
 
-    void init() {
+    public void doSomething() {
         serviceWithTransactions.makePayment();
+        System.out.println("Blablabla");
     }
+
 }

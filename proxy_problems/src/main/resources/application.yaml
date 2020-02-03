@@ -1,11 +1,9 @@
-app:
- jobs:
-  scheduler:
-    cron:
-      simpleTestJob: 30/15 * * * * ?
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/ib?currentSchema=practice
     username: practice_ms
     password: practice_ms
+logging:
+  level:
+    org.springframework.transaction: TRACE

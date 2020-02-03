@@ -1,24 +1,30 @@
 package transactional;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Component
 @Transactional
 public class ServiceWithTransactions {
 
-    void makePayment() {
+    @Lazy
+    @Autowired
+    private ServiceWithTransactions self;
+
+        public void makePayment() {
         pay();
-        makeNotification();
+        self.makeNotification();
     }
 
-    void pay() {
+    public void pay() {
         System.out.println("Payment completed");
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    void makeNotification() {
+    public void makeNotification() {
         System.out.println("Notification was made");
     }
 
